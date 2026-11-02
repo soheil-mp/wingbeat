@@ -13,16 +13,50 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  UV_VERSION: "0.13.6"
+  JUST: uvx --from rust-just==1.59.0 just
+
 jobs:
+  changes:
+    name: Detect changed areas
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      python: ${{ steps.filter.outputs.python }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: dorny/paths-filter@ceb8a2b8f2d89434be7ff52d3de7ec3738c5cc9d # v4.0.3
+        id: filter
+        with:
+          filters: |
+            python:
+              - "**/*.py"
+              - "**/pyproject.toml"
+              - "uv.lock"
+              - ".python-version"
+              - "justfile"
+              - ".github/workflows/ci.yml"
+
   hygiene:
     name: Pre-commit hooks
     runs-on: ubuntu-24.04
     timeout-minutes: 10
+    env:
+      # mypy runs in the python job against the synced environment.
+      SKIP: mypy
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: ${{ env.UV_VERSION }}
       - name: Run every pre-commit hook on every file
         run: uvx --from pre-commit==4.6.2 pre-commit run --all-files --show-diff-on-failure
 
@@ -46,3 +80,60 @@ jobs:
           tar -xzf gitleaks.tar.gz gitleaks
       - name: Scan the whole git history
         run: ./gitleaks git --redact --verbose --exit-code 1 .
+
+  python:
+    name: Python ${{ matrix.python }}
+    needs: changes
+    if: needs.changes.outputs.python == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - python: "3.13"
+            experimental: false
+          # Early warning only: dagster-dbt does not support 3.14 yet (ADR-0004).
+          - python: "3.14"
+            experimental: true
+    continue-on-error: ${{ matrix.experimental }}
+    env:
+      UV_PYTHON: ${{ matrix.python }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: ${{ env.UV_VERSION }}
+          python-version: ${{ matrix.python }}
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+      - name: Sync the workspace from the lockfile
+        run: uv sync --locked
+      - name: Lint and format check
+        run: $JUST lint
+      - name: Type check (mypy --strict)
+        run: $JUST typecheck
+      - name: Tests with coverage
+        run: $JUST test --cov-report=xml
+      - name: Upload coverage report
+        if: ${{ !matrix.experimental }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: coverage-${{ matrix.python }}
+          path: coverage.xml
+          retention-days: 14
+
+  result:
+    # The single required status check: green only if every job above passed or was skipped.
+    name: CI result
+    needs: [hygiene, secrets, python]
+    if: always()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - name: Fail if any required job failed or was cancelled
+        if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')
+        run: exit 1
+      - run: echo "All required jobs passed or were skipped."
