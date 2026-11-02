@@ -79,6 +79,10 @@ just check   # lint, strict type checks, tests with coverage, every pre-commit h
 just         # list every recipe
 ```
 
+Prefer containers? Open the repository in a dev container (VS Code, GitHub Codespaces or the
+`devcontainer` CLI): `.devcontainer/` installs the same pinned uv, just and buf and runs
+`just setup` for you.
+
 Today that runs the workspace skeleton and its quality gates. From milestone M4 on, Docker 24+
 is needed as well, and the whole platform starts with one command:
 

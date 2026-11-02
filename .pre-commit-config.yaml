@@ -26,6 +26,7 @@ repos:
         args: [--unsafe]
         files: ^mkdocs\.yml$
       - id: check-toml
+      - id: check-json
       - id: detect-private-key
       - id: end-of-file-fixer
       - id: mixed-line-ending
@@ -57,6 +58,11 @@ repos:
         types_or: [python, pyi]
         pass_filenames: false
         require_serial: true
+
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.11.0.1
+    hooks:
+      - id: shellcheck
 
   - repo: https://github.com/DavidAnson/markdownlint-cli2
     rev: v0.24.0
