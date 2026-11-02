@@ -1,0 +1,67 @@
+version = 1
+revision = 3
+requires-python = ">=3.13"
+
+[manifest]
+members = [
+    "wingbeat",
+    "wingbeat-api",
+    "wingbeat-common",
+    "wingbeat-dsp",
+    "wingbeat-edge-agent",
+    "wingbeat-simulator",
+    "wingbeat-stream-processor",
+]
+
+[[package]]
+name = "wingbeat"
+version = "0.0.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "wingbeat-api" },
+    { name = "wingbeat-common" },
+    { name = "wingbeat-dsp" },
+    { name = "wingbeat-edge-agent" },
+    { name = "wingbeat-simulator" },
+    { name = "wingbeat-stream-processor" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "wingbeat-api", editable = "services/api" },
+    { name = "wingbeat-common", editable = "packages/wingbeat-common" },
+    { name = "wingbeat-dsp", editable = "packages/wingbeat-dsp" },
+    { name = "wingbeat-edge-agent", editable = "services/edge-agent" },
+    { name = "wingbeat-simulator", editable = "services/simulator" },
+    { name = "wingbeat-stream-processor", editable = "services/stream-processor" },
+]
+
+[[package]]
+name = "wingbeat-api"
+version = "0.0.0"
+source = { editable = "services/api" }
+
+[[package]]
+name = "wingbeat-common"
+version = "0.0.0"
+source = { editable = "packages/wingbeat-common" }
+
+[[package]]
+name = "wingbeat-dsp"
+version = "0.0.0"
+source = { editable = "packages/wingbeat-dsp" }
+
+[[package]]
+name = "wingbeat-edge-agent"
+version = "0.0.0"
+source = { editable = "services/edge-agent" }
+
+[[package]]
+name = "wingbeat-simulator"
+version = "0.0.0"
+source = { editable = "services/simulator" }
+
+[[package]]
+name = "wingbeat-stream-processor"
+version = "0.0.0"
+source = { editable = "services/stream-processor" }

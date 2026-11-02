@@ -1,0 +1,31 @@
+# Workspace root. It isn't packaged; it pins the toolchain and installs every member for development.
+[project]
+name = "wingbeat"
+version = "0.0.0"
+description = "Real-time acoustic mosquito monitoring: edge DSP, streaming and lakehouse data platform."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.13"
+dependencies = [
+    "wingbeat-dsp",
+    "wingbeat-common",
+    "wingbeat-edge-agent",
+    "wingbeat-simulator",
+    "wingbeat-stream-processor",
+    "wingbeat-api",
+]
+
+[tool.uv]
+package = false
+required-version = ">=0.11"
+
+[tool.uv.workspace]
+members = ["packages/*", "services/*"]
+
+[tool.uv.sources]
+wingbeat-dsp = { workspace = true }
+wingbeat-common = { workspace = true }
+wingbeat-edge-agent = { workspace = true }
+wingbeat-simulator = { workspace = true }
+wingbeat-stream-processor = { workspace = true }
+wingbeat-api = { workspace = true }
