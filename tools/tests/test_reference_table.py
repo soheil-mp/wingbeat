@@ -82,7 +82,7 @@ def test_ranges_are_ordered(table: dict[str, Any]) -> None:
         for slope in species.get("temperature_slopes", []):
             assert slope["min_hz_per_c"] <= slope["max_hz_per_c"]
         for band in species.get("convergence", []):
-            assert band["band_hz"][0] < band["band_hz"][1]
+            assert band["band_hz"][0] <= band["band_hz"][1]
 
 
 def test_tolerance_present_only_with_a_temperature(table: dict[str, Any]) -> None:

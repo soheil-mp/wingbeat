@@ -8,7 +8,7 @@
 | Finding | Source | Design consequence |
 | :-- | :-- | :-- |
 | A flying mosquito emits a tone at its wingbeat frequency plus integer harmonics; female fundamentals in a 29-species study ranged from 342 Hz to 737 Hz. | Kim et al. 2021 | A band of roughly 250–2,500 Hz holds the fundamental and the first harmonics, so an 8 kHz sample rate is enough. |
-| Males beat faster than females (roughly 1.3–1.5× in the studies below). | Rajan et al. 2025; Loh et al. 2024 | Sex is a separate axis in the reference table; male and female bands are kept separately. |
+| Males beat faster than females (roughly 1.3–1.7× in the studies below). | Rajan et al. 2025; Loh et al. 2024 | Sex is a separate axis in the reference table; male and female bands are kept separately. |
 | Frequency rises with air temperature: about 8–13 Hz/°C for female *Aedes aegypti*, and about 9.6 Hz/°C at 525 Hz in a general insect formula. | Villarreal et al. 2017; Saha et al. 2024 | Every detection is **temperature-normalised** to 20 °C before attribution, using live temperature (on-board sensor or weather API). |
 | A 15 °C swing moves a 500 Hz tone by about 144 Hz, which is more than the 128 Hz gap between female *Culex pipiens* and *Ae. albopictus* at a fixed temperature. | Saha et al. 2024 formula; Kim et al. 2021 table | Without normalisation, species bands overlap across a single day. This is the project's central technical argument. |
 | Density, time of day, gravid status and age also shift frequency by several percent. | Kim et al. 2024; Rajan et al. 2025 | Bands need explicit tolerances, and attribution must report uncertainty, not a single label. |
@@ -67,15 +67,25 @@ table therefore records modality, temperature and sex.
 
 ### Sex differences
 
-| Species | Female (Hz) | Male (Hz) | Source |
-| :-- | --: | --: | :-- |
-| *Ae. albopictus* | 499.28 | 704.17 | Rajan et al. 2025 |
-| *Cx. quinquefasciatus* | 414.61 | 533.99 | Rajan et al. 2025 |
-| *Ae. aegypti* | 479 | 721 | Loh et al. 2024 |
-| *Ae. albopictus* | 512 | 769 | Loh et al. 2024 |
+| Species | Female (Hz) | Male (Hz) | Conditions | Source |
+| :-- | --: | --: | :-- | :-- |
+| *Ae. albopictus* | 499.28 ± 18.06 (n = 58) | 704.17 ± 50.49 (n = 63) | individual adults, handheld recorder, 27 ± 2 °C | Rajan et al. 2025, Table 2 |
+| *Cx. quinquefasciatus* | 414.61 ± 18.24 (n = 49) | 533.99 ± 33.98 (n = 45) | individual adults, handheld recorder, 27 ± 2 °C | Rajan et al. 2025, Table 2 |
+| *Ae. aegypti* | 531.9 ± 13.1 (n = 15 cages) | 887.0 ± 24.9 (n = 17 cages) | virgin, cages of 50, microphone, 28 ± 1 °C | Loh et al. 2024, Table 1 |
+| *Ae. albopictus* | 566.5 ± 8.4 (n = 15 cages) | 921.0 ± 31.2 (n = 20 cages) | virgin, cages of 50, microphone, 28 ± 1 °C | Loh et al. 2024, Table 1 |
+
+Two notes from checking the full texts:
+
+- Loh et al. also give averages of *earlier* studies (479 Hz and 721 Hz for female and male
+  *Ae. aegypti*, 512 Hz and 769 Hz for *Ae. albopictus*). Those are literature averages, not
+  their measurements, and are not used in the reference table. An earlier version of this note
+  listed them as measurements.
+- Rajan et al. give 533.90 Hz for male *Cx. quinquefasciatus* in the text and 533.99 Hz in
+  Table 2. The table value is used.
 
 These studies used different conditions from Kim et al. 2021, so the absolute values aren't
-comparable across tables. That is one more reason to store conditions with every reference value.
+comparable across tables. That is one more reason to store conditions with every reference value
+(`reference/species.yaml`).
 
 ## 4. Temperature
 

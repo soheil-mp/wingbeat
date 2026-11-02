@@ -2,7 +2,7 @@
 # Every value cites a source and a locator inside it. Unknown values stay unknown; never estimate.
 # Values were checked against the full text of each source; see docs/research/science.md.
 schema_version: 1
-table_version: "0.1.0"
+table_version: "0.2.0"
 reference_temperature_c: 20.0
 
 sources:
@@ -12,11 +12,34 @@ sources:
       sensors permit rapid recording of wingbeat frequency and bioacoustic species identification
       of mosquitoes. Scientific Reports 11:10042.
     doi: 10.1038/s41598-021-89644-z
+  cator2009:
+    citation: >-
+      Cator LJ, Arthur BJ, Harrington LC, Hoy RR (2009). Harmonic convergence in the love songs of
+      the dengue vector mosquito. Science 323:1077-1079.
+    doi: 10.1126/science.1166541
+  loh2024:
+    citation: >-
+      Loh YM, Xu YYJ, Lee TT, Ohashi TS, Zhang YD, Eberl DF, Su MP, Kamikouchi A (2024).
+      Differences in male Aedes aegypti and Aedes albopictus hearing systems facilitate
+      recognition of conspecific female flight tones. iScience 27:110264.
+    doi: 10.1016/j.isci.2024.110264
+  rajan2025:
+    citation: >-
+      Rajan P, Goswami D, Vanlalhmuaka, Datta S, Rabha B, Kamboj DV (2025). Acoustic behaviour and
+      flight tone frequency changes in adult Aedes albopictus and Culex quinquefasciatus
+      mosquitoes. Scientific Reports.
+    doi: 10.1038/s41598-025-89608-7
   saha2024:
     citation: >-
       Saha T, Genoud AP, Park JH, Thomas BP (2024). Temperature dependency of insect's wingbeat
       frequencies: an empirical approach to temperature correction. Insects 15:342.
     doi: 10.3390/insects15050342
+  villarreal2017:
+    citation: >-
+      Villarreal SM, Winokur O, Harrington L (2017). The impact of temperature and body size on
+      fundamental flight tone variation in the mosquito vector Aedes aegypti. Journal of Medical
+      Entomology 54:1116-1121.
+    doi: 10.1093/jme/tjx079
 
 temperature_correction:
   default:
@@ -85,6 +108,50 @@ species:
         sd_hz: 31.24
         n: 840
         note: sample size 591
+      - &rajan2025
+        sex: female
+        mean_hz: 499.28
+        sd_hz: 18.06
+        n: 58
+        modality: acoustic-microphone
+        temperature_c: 27.0
+        temperature_tolerance_c: 2.0
+        temperature_basis: recording
+        relative_humidity_pct: null
+        condition: adult, recorded individually (Zoom H1n recorder)
+        source: rajan2025
+        locator: Table 2
+        note: n as reported, unit not stated; RH reported as 70-80 %
+      - <<: *rajan2025
+        sex: male
+        mean_hz: 704.17
+        sd_hz: 50.49
+        n: 63
+      - &loh2024
+        sex: female
+        mean_hz: 566.5
+        sd_hz: 8.4
+        n: 15
+        n_unit: cages
+        modality: acoustic-microphone
+        temperature_c: 28.0
+        temperature_tolerance_c: 1.0
+        temperature_basis: recording
+        relative_humidity_pct: null
+        condition: virgin, cages of 50, 30 min recordings before lights off on day 3 of entrainment
+        source: loh2024
+        locator: Table 1
+        note: RH 60-70 % during rearing; not reported for the recordings
+      - <<: *loh2024
+        sex: male
+        mean_hz: 921.0
+        sd_hz: 31.2
+        n: 20
+    convergence:
+      - band_hz: [1400, 1500]
+        description: adult male and female harmonics combine during swarming (male first, female second harmonic)
+        source: rajan2025
+        locator: Abstract
 
   - id: aedes-aegypti
     scientific_name: Aedes aegypti
@@ -96,6 +163,27 @@ species:
         sd_hz: 34.19
         n: 1161
         note: sample size 509
+      - <<: *loh2024
+        sex: female
+        mean_hz: 531.9
+        sd_hz: 13.1
+        n: 15
+      - <<: *loh2024
+        sex: male
+        mean_hz: 887.0
+        sd_hz: 24.9
+        n: 17
+    temperature_slopes:
+      - sex: female
+        min_hz_per_c: 8.0
+        max_hz_per_c: 13.0
+        source: villarreal2017
+        locator: Abstract
+    convergence:
+      - band_hz: [1200, 1200]
+        description: courtship duet matched at a shared harmonic of about 1200 Hz, not at the fundamentals of about 400 Hz (female) and 600 Hz (male)
+        source: cator2009
+        locator: Abstract
 
   - id: culex-quinquefasciatus
     scientific_name: Culex quinquefasciatus
@@ -107,3 +195,88 @@ species:
         sd_hz: 30.70
         n: 2738
         note: sample size 798
+      - <<: *rajan2025
+        sex: female
+        mean_hz: 414.61
+        sd_hz: 18.24
+        n: 49
+      - <<: *rajan2025
+        sex: male
+        mean_hz: 533.99
+        sd_hz: 33.98
+        n: 45
+        note: n as reported, unit not stated; RH reported as 70-80 %; the text gives 533.90 Hz, Table 2 gives 533.99 Hz (used here)
+    convergence:
+      - band_hz: [1400, 1500]
+        description: adult male and female harmonics combine during swarming (male first, female second harmonic)
+        source: rajan2025
+        locator: Abstract
+
+  # Recorded in the Netherlands on GBIF (top-15 species, 2026-11-02) but without a wingbeat
+  # frequency in the sources reviewed so far. Roadmap item M1.3 searches for primary sources.
+  - id: culiseta-annulata
+    scientific_name: Culiseta annulata
+    gbif_taxon_key: 1649565
+    status: unknown
+    measurements: []
+    notes: no wingbeat frequency found in the sources reviewed on 2026-11-02 (see roadmap item M1.3)
+  - id: culiseta-morsitans
+    scientific_name: Culiseta morsitans
+    gbif_taxon_key: 1649556
+    status: unknown
+    measurements: []
+    notes: no wingbeat frequency found in the sources reviewed on 2026-11-02 (see roadmap item M1.3)
+  - id: anopheles-messeae
+    scientific_name: Anopheles messeae
+    gbif_taxon_key: 1650482
+    status: unknown
+    measurements: []
+    notes: no wingbeat frequency found in the sources reviewed on 2026-11-02 (see roadmap item M1.3)
+  - id: anopheles-maculipennis
+    scientific_name: Anopheles maculipennis
+    gbif_taxon_key: 1650731
+    status: unknown
+    measurements: []
+    notes: no wingbeat frequency found in the sources reviewed on 2026-11-02 (see roadmap item M1.3)
+  - id: anopheles-daciae
+    scientific_name: Anopheles daciae
+    gbif_taxon_key: 1650386
+    status: unknown
+    measurements: []
+    notes: no wingbeat frequency found in the sources reviewed on 2026-11-02 (see roadmap item M1.3)
+  - id: anopheles-claviger
+    scientific_name: Anopheles claviger
+    gbif_taxon_key: 1650857
+    status: unknown
+    measurements: []
+    notes: no wingbeat frequency found in the sources reviewed on 2026-11-02 (see roadmap item M1.3)
+  - id: anopheles-plumbeus
+    scientific_name: Anopheles plumbeus
+    gbif_taxon_key: 1650313
+    status: unknown
+    measurements: []
+    notes: no wingbeat frequency found in the sources reviewed on 2026-11-02 (see roadmap item M1.3)
+  - id: coquillettidia-richiardii
+    scientific_name: Coquillettidia richiardii
+    gbif_taxon_key: 1648899
+    status: unknown
+    measurements: []
+    notes: no wingbeat frequency found in the sources reviewed on 2026-11-02 (see roadmap item M1.3)
+  - id: culex-territans
+    scientific_name: Culex territans
+    gbif_taxon_key: 1653175
+    status: unknown
+    measurements: []
+    notes: no wingbeat frequency found in the sources reviewed on 2026-11-02 (see roadmap item M1.3)
+  - id: aedes-punctor
+    scientific_name: Aedes punctor
+    gbif_taxon_key: 1652371
+    status: unknown
+    measurements: []
+    notes: no wingbeat frequency found in the sources reviewed on 2026-11-02 (see roadmap item M1.3)
+  - id: aedes-cinereus
+    scientific_name: Aedes cinereus
+    gbif_taxon_key: 1651718
+    status: unknown
+    measurements: []
+    notes: no wingbeat frequency found in the sources reviewed on 2026-11-02 (see roadmap item M1.3)
