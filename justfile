@@ -34,12 +34,16 @@ typecheck:
 test *args:
     uv run --frozen pytest {{ args }}
 
+# Enforce the dependency licence and scope policy on uv.lock (ADR-0002)
+deps:
+    uv run --frozen python tools/dependency_policy.py
+
 # Run every pre-commit hook on every file
 hooks:
     {{ pre_commit }} run --all-files --show-diff-on-failure
 
-# Every local gate: lint, types, tests and hooks
-check: lint typecheck test hooks
+# Every local gate: lint, types, tests, dependency policy and hooks
+check: lint typecheck test deps hooks
 
 # Refresh the lockfile to the newest allowed versions
 upgrade:

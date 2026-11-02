@@ -8,7 +8,7 @@ from an empty repository to a 1.0 release.
 
 - **Total planned work: 1,032 hours** in 19 milestones (M0–M18), plus 226 hours of optional
   stretch work (S1–S8).
-- **Done so far: 28 hours** (see the ticked items below).
+- **Done so far: 30 hours** (see the ticked items below).
 - **Pace:** about 12 months at 20 h/week, or 7 months at 35 h/week.
 
 Research behind the plan: [`docs/research/`](docs/research/). Design decisions:
@@ -117,7 +117,7 @@ flowchart LR
   `docs`, `up`, `down` and `demo`, matching CI one to one.
 - [x] **M0.9** CI pipeline (4 h): per-package jobs with path filters, uv cache, actions pinned
   by SHA, least-privilege `permissions`, concurrency cancellation, required status checks.
-- [ ] **M0.10** Dependency policy gate (2 h): licence allow-list and a deny-list of ML and
+- [x] **M0.10** Dependency policy gate (2 h): licence allow-list and a deny-list of ML and
   model-API packages, enforced in CI from the lockfile.
 - [ ] **M0.11** Renovate (1.5 h): grouped updates, lockfile maintenance and digest pinning for
   images, replacing Dependabot.

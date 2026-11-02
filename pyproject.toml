@@ -85,12 +85,14 @@ python_version = "3.13"
 strict = true
 warn_unreachable = true
 enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
-files = ["packages", "services"]
+files = ["packages", "services", "tools"]
+mypy_path = "tools"
 
 # --- pytest and coverage -------------------------------------------------------
 [tool.pytest.ini_options]
 minversion = "9.0"
-testpaths = ["packages", "services"]
+testpaths = ["packages", "services", "tools"]
+pythonpath = ["tools"]
 addopts = [
     "-ra",
     "--strict-markers",
@@ -104,6 +106,7 @@ filterwarnings = ["error"]
 
 [tool.coverage.run]
 branch = true
+source = ["tools"]
 source_pkgs = [
     "wingbeat_dsp",
     "wingbeat_common",
@@ -116,4 +119,45 @@ source_pkgs = [
 [tool.coverage.report]
 fail_under = 90
 show_missing = true
-exclude_also = ["if TYPE_CHECKING:", "raise NotImplementedError", "@overload"]
+exclude_also = [
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+    "@overload",
+    'if __name__ == "__main__":',
+]
+
+# --- Dependency policy (tools/dependency_policy.py, ADR-0002) ------------------
+[tool.wingbeat.dependency-policy]
+allowed-licences = [
+    "0BSD",
+    "Apache-2.0",
+    "Apache-2.0 WITH LLVM-exception",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "BSL-1.0",
+    "CC0-1.0",
+    "ISC",
+    "MIT",
+    "MIT-0",
+    "MPL-2.0",
+    "PSF-2.0",
+    "Python-2.0",
+    "Unlicense",
+    "Zlib",
+]
+# Machine-learning frameworks, model runtimes and model-API clients are out of scope.
+denied-packages = [
+    "accelerate", "ai-edge-litert", "anthropic", "birdnetlib", "catboost", "cohere",
+    "datasets", "diffusers", "flax", "gensim", "google-genai", "google-generativeai", "groq",
+    "huggingface-hub", "lightgbm", "lightning", "litellm", "mistralai", "mlflow", "ollama",
+    "onnx", "onnxruntime", "onnxruntime-gpu", "openai", "opensoundscape", "pytorch-lightning",
+    "replicate", "safetensors", "scikit-learn", "sentence-transformers", "sklearn", "spacy",
+    "tflite-runtime", "timm", "tokenizers", "transformers", "wandb", "xgboost",
+]
+# A prefix also matches every "<prefix>-..." package, e.g. langchain-core.
+denied-prefixes = ["jax", "jaxlib", "keras", "langchain", "llama-cpp", "llama-index", "nvidia", "tensorflow", "torch"]
+
+# Packages whose published metadata has no usable licence field, with the verified licence.
+[tool.wingbeat.dependency-policy.licence-overrides]
+# Windows-only dependency of pytest, never installed on Linux; BSD-3-Clause per its LICENSE.txt.
+colorama = "BSD-3-Clause"

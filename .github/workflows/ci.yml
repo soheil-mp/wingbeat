@@ -117,6 +117,8 @@ jobs:
         run: $JUST typecheck
       - name: Tests with coverage
         run: $JUST test --cov-report=xml
+      - name: Dependency licence and scope policy
+        run: $JUST deps
       - name: Upload coverage report
         if: ${{ !matrix.experimental }}
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
