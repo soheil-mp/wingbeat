@@ -67,18 +67,19 @@ The reasons for each choice, the versions checked, and the alternatives rejected
 
 ## How to run it
 
-Today the repository holds the plan, so running it means checking out the docs and the quality
-gates:
+Prerequisites: [uv](https://docs.astral.sh/uv/) 0.13.6 or newer, `git`, and
+[just](https://just.systems) (`uv tool install rust-just`). uv fetches Python 3.13 itself.
 
 ```sh
 git clone https://github.com/soheil-mp/wingbeat.git
 cd wingbeat
-uvx pre-commit install          # secret scanning, lint and commit-message hooks
-uvx pre-commit run --all-files  # the same checks CI runs
+just setup   # sync the workspace from uv.lock and install the git hooks
+just check   # lint, strict type checks, tests with coverage, every pre-commit hook
+just         # list every recipe
 ```
 
-Prerequisites: [uv](https://docs.astral.sh/uv/) (and `git`). From milestone M4 on, you'll also
-need Docker 24+ and [just](https://just.systems), and the whole platform starts with one command:
+Today that runs the workspace skeleton and its quality gates. From milestone M4 on, Docker 24+
+is needed as well, and the whole platform starts with one command:
 
 ```sh
 cp .env.example .env

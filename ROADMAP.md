@@ -8,7 +8,7 @@ from an empty repository to a 1.0 release.
 
 - **Total planned work: 1,032 hours** in 19 milestones (M0–M18), plus 226 hours of optional
   stretch work (S1–S8).
-- **Done so far: 22 hours** (see the ticked items below).
+- **Done so far: 24 hours** (see the ticked items below).
 - **Pace:** about 12 months at 20 h/week, or 7 months at 35 h/week.
 
 Research behind the plan: [`docs/research/`](docs/research/). Design decisions:
@@ -113,7 +113,7 @@ flowchart LR
   `services/` layout with empty typed packages (`py.typed`), Python 3.13 pin, `uv.lock`.
 - [x] **M0.7** Shared quality config (2 h): Ruff rules, `mypy --strict`, pytest with coverage
   thresholds, and the matching pre-commit hooks.
-- [ ] **M0.8** Task runner (2 h): `justfile` with `setup`, `fmt`, `lint`, `test`, `check`,
+- [x] **M0.8** Task runner (2 h): `justfile` with `setup`, `fmt`, `lint`, `test`, `check`,
   `docs`, `up`, `down` and `demo`, matching CI one to one.
 - [ ] **M0.9** CI pipeline (4 h): per-package jobs with path filters, uv cache, actions pinned
   by SHA, least-privilege `permissions`, concurrency cancellation, required status checks.

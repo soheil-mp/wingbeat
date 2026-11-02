@@ -18,7 +18,7 @@ and pull requests are welcome.
 
 1. Pick an open issue (or open one) and comment that you're working on it.
 2. Create a short-lived branch: `feat/m2-harmonic-estimator`, `fix/bridge-headers`, …
-3. Install the hooks once: `uvx pre-commit install`.
+3. Set up once with `just setup`, and run `just check` before pushing; CI runs the same recipes.
 4. Commit in small working steps with [Conventional Commits](https://www.conventionalcommits.org)
    (`feat:`, `fix:`, `docs:`, `test:`, `refactor:`, `perf:`, `build:`, `ci:`, `chore:`).
 5. Open a pull request and fill in the checklist. CI must be green.
