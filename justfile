@@ -34,6 +34,14 @@ typecheck:
 test *args:
     uv run --frozen pytest {{ args }}
 
+# Build the documentation site; any warning fails the build
+docs:
+    NO_MKDOCS_2_WARNING=1 uv run --frozen mkdocs build --strict
+
+# Serve the documentation with live reload on http://127.0.0.1:8000
+docs-serve:
+    NO_MKDOCS_2_WARNING=1 uv run --frozen mkdocs serve
+
 # Enforce the dependency licence and scope policy on uv.lock (ADR-0002)
 deps:
     uv run --frozen python tools/dependency_policy.py

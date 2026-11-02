@@ -102,6 +102,12 @@ def test_full_licence_text_falls_back_to_classifiers() -> None:
     assert dp.licence_from_metadata(as_metadata(fake)) == "MIT"
 
 
+@pytest.mark.parametrize("placeholder", ["UNKNOWN", "None", "n/a"])
+def test_placeholder_legacy_licence_falls_back_to_classifiers(placeholder: str) -> None:
+    fake = FakeMetadata({"License": placeholder}, ["License :: OSI Approved :: MIT License"])
+    assert dp.licence_from_metadata(as_metadata(fake)) == "MIT"
+
+
 def test_several_classifiers_must_all_hold() -> None:
     fake = FakeMetadata(
         {},

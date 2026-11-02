@@ -25,6 +25,8 @@ from typing import Any
 _TOKEN = re.compile(r"\(|\)|[^\s()]+")
 #: A legacy ``License`` field longer than this is licence text, not an identifier.
 _MAX_LICENCE_NAME_LENGTH = 40
+#: Legacy ``License`` values that mean "not declared"; classifiers are used instead.
+_PLACEHOLDER_LICENCES = frozenset({"unknown", "none", "n/a", "other"})
 
 #: Trove classifiers and free-text ``License`` values mapped to SPDX identifiers.
 LEGACY_LICENCE_NAMES: dict[str, str] = {
@@ -157,7 +159,13 @@ def licence_from_metadata(dist_metadata: metadata.PackageMetadata) -> str | None
     if expression:
         return expression.strip()
     legacy = (dist_metadata.get("License") or "").strip()
-    if legacy and "\n" not in legacy and len(legacy) <= _MAX_LICENCE_NAME_LENGTH:
+    is_placeholder = legacy.lower() in _PLACEHOLDER_LICENCES
+    if (
+        legacy
+        and not is_placeholder
+        and "\n" not in legacy
+        and len(legacy) <= _MAX_LICENCE_NAME_LENGTH
+    ):
         return LEGACY_LICENCE_NAMES.get(legacy.lower(), legacy)
     classifiers = [
         LEGACY_LICENCE_NAMES[c.lower()]

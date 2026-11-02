@@ -58,7 +58,7 @@
 | Fault injection | Toxiproxy | 2.13 | MIT | Network faults between edge and broker in tests. |
 | API contract tests | Schemathesis | 4.33 | MIT | Property-based tests generated from the OpenAPI spec. |
 | Load tests | Locust | 2.47 | MIT | Python-native load profiles. |
-| Docs | MkDocs Material | 9.8 | MIT | Stable. Its successor Zensical is still 0.0.x, so we evaluate it later. |
+| Docs | MkDocs Material | 9.8 | MIT | Stable today, but its build output announces end of life on 5 May 2027. Its successor Zensical is still 0.0.x; migrate before that date (stretch S8). |
 | Task runner | just | 1.59 | CC0 | Readable recipes and cross-platform. |
 | Secret scanning | gitleaks | 8.30 | MIT | Pre-commit and CI full-history scan. |
 

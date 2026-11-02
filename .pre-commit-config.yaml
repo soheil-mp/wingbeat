@@ -20,6 +20,11 @@ repos:
       - id: check-merge-conflict
       - id: check-yaml
         args: [--allow-multiple-documents]
+        exclude: ^mkdocs\.yml$
+      - id: check-yaml
+        name: check yaml (syntax only, MkDocs tags)
+        args: [--unsafe]
+        files: ^mkdocs\.yml$
       - id: check-toml
       - id: detect-private-key
       - id: end-of-file-fixer

@@ -1,6 +1,7 @@
 # Wingbeat
 
 [![ci](https://github.com/soheil-mp/wingbeat/actions/workflows/ci.yml/badge.svg)](https://github.com/soheil-mp/wingbeat/actions/workflows/ci.yml)
+[![docs](https://github.com/soheil-mp/wingbeat/actions/workflows/docs.yml/badge.svg)](https://soheil-mp.github.io/wingbeat/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 Wingbeat is an open platform for monitoring mosquitoes by their sound, in real time. In the
@@ -123,6 +124,11 @@ What's next: the work ahead is in [`ROADMAP.md`](ROADMAP.md). It has 19 mileston
 1,032 hours of planned work, every item estimated. Next up are the workspace and CI tooling (M0),
 then the science specification (M1) and the DSP library (M2). Each milestone's items become
 GitHub issues when that milestone starts.
+
+## Documentation
+
+The documentation site is at <https://soheil-mp.github.io/wingbeat/> (built from `docs/` with
+`just docs`, and `just docs-serve` for live preview).
 
 ## Contributing and security
 

@@ -1,0 +1,87 @@
+site_name: Wingbeat
+site_description: Real-time acoustic mosquito monitoring with deterministic DSP and a streaming data platform.
+site_url: https://soheil-mp.github.io/wingbeat/
+repo_url: https://github.com/soheil-mp/wingbeat
+repo_name: soheil-mp/wingbeat
+edit_uri: edit/main/docs/
+copyright: Wingbeat is MIT licensed. Third-party data keeps its own licence (see Data sources).
+strict: true
+
+theme:
+  name: material
+  features:
+    - content.code.copy
+    - content.action.edit
+    - navigation.instant
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn
+
+exclude_docs: |
+  adr/template.md
+
+nav:
+  - Home: index.md
+  - Architecture: architecture.md
+  - Research:
+      - The acoustics of mosquito flight: research/science.md
+      - Data sources and licences: research/data-sources.md
+      - Technology landscape: research/technology-landscape.md
+  - Decisions:
+      - adr/README.md
+      - adr/0001-record-architecture-decisions.md
+      - adr/0002-deterministic-signal-processing.md
+      - adr/0003-mqtt-edge-kafka-core.md
+      - adr/0004-python-uv-monorepo.md
+      - adr/0005-dagster-orchestration.md
+      - adr/0006-hot-and-cold-storage.md
+      - adr/0007-protobuf-contracts.md
+      - adr/0008-privacy-by-design-audio.md
+      - adr/0009-temperature-normalised-attribution.md
+      - adr/0010-synthetic-first-data.md
+  - Roadmap: https://github.com/soheil-mp/wingbeat/blob/main/ROADMAP.md

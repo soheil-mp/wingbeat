@@ -8,7 +8,7 @@ from an empty repository to a 1.0 release.
 
 - **Total planned work: 1,032 hours** in 19 milestones (M0–M18), plus 226 hours of optional
   stretch work (S1–S8).
-- **Done so far: 30 hours** (see the ticked items below).
+- **Done so far: 33 hours** (see the ticked items below).
 - **Pace:** about 12 months at 20 h/week, or 7 months at 35 h/week.
 
 Research behind the plan: [`docs/research/`](docs/research/). Design decisions:
@@ -121,7 +121,7 @@ flowchart LR
   model-API packages, enforced in CI from the lockfile.
 - [ ] **M0.11** Renovate (1.5 h): grouped updates, lockfile maintenance and digest pinning for
   images, replacing Dependabot.
-- [ ] **M0.12** Docs site skeleton (3 h): MkDocs Material with Mermaid, the ADR index and
+- [x] **M0.12** Docs site skeleton (3 h): MkDocs Material with Mermaid, the ADR index and
   research notes, deployed to GitHub Pages from Actions.
 - [ ] **M0.13** Dev container (2 h): `devcontainer.json` with uv, just, buf and Docker-in-Docker.
 - [x] **M0.14** Repository settings (1 h): merge commits only, delete merged branches, secret
@@ -742,7 +742,7 @@ alone; v1.0.0 is tagged, signed and archived with a DOI.
 | S5 | Iceberg interoperability: gold exported to Iceberg with a REST catalog (Lakekeeper) and queried from Trino | 24 |
 | S6 | Kafka tiered storage to S3 for long retention at low disk cost | 16 |
 | S7 | Multi-site federation: MQTT bridges between regional brokers, and MirrorMaker 2 | 24 |
-| S8 | Tooling trials: Zensical for the docs and `ty` for type checking, once both reach 1.0 | 8 |
+| S8 | Tooling trials: migrate the docs to Zensical before Material for MkDocs reaches end of life (5 May 2027), and try `ty` for type checking once it reaches 1.0 | 8 |
 | | **Stretch total** | **226** |
 
 ---
