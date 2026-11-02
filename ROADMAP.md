@@ -8,7 +8,7 @@ from an empty repository to a 1.0 release.
 
 - **Total planned work: 1,032 hours** in 19 milestones (M0–M18), plus 226 hours of optional
   stretch work (S1–S8).
-- **Done so far: 35 hours** (see the ticked items below).
+- **Done so far: 38 hours** (see the ticked items below).
 - **Pace:** about 12 months at 20 h/week, or 7 months at 35 h/week.
 
 Research behind the plan: [`docs/research/`](docs/research/). Design decisions:
@@ -139,7 +139,7 @@ flowchart LR
 **Goal:** turn the literature into a versioned, machine-checked reference before writing DSP
 code. Every number has a citation, and unknowns stay unknown.
 
-- [ ] **M1.1** Reference table schema (3 h): `reference/species.yaml` plus a JSON Schema
+- [x] **M1.1** Reference table schema (3 h): `reference/species.yaml` plus a JSON Schema
   covering species, sex, mean, SD, n, modality, temperature, RH, DOI, table or page, and notes.
   Validated in CI.
 - [ ] **M1.2** Populate the reference table (5 h): rows from Kim et al. 2021, Rajan et al. 2025,

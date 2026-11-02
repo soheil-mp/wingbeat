@@ -1,0 +1,109 @@
+# Wingbeat species reference table. Schema: reference/species.schema.json.
+# Every value cites a source and a locator inside it. Unknown values stay unknown; never estimate.
+# Values were checked against the full text of each source; see docs/research/science.md.
+schema_version: 1
+table_version: "0.1.0"
+reference_temperature_c: 20.0
+
+sources:
+  kim2021:
+    citation: >-
+      Kim D, DeBriere TJ, Cherukumalli S, White GS, Burkett-Cadena ND (2021). Infrared light
+      sensors permit rapid recording of wingbeat frequency and bioacoustic species identification
+      of mosquitoes. Scientific Reports 11:10042.
+    doi: 10.1038/s41598-021-89644-z
+  saha2024:
+    citation: >-
+      Saha T, Genoud AP, Park JH, Thomas BP (2024). Temperature dependency of insect's wingbeat
+      frequencies: an empirical approach to temperature correction. Insects 15:342.
+    doi: 10.3390/insects15050342
+
+temperature_correction:
+  default:
+    method: frequency-dependent-slope
+    source: saha2024
+    locator: Eq. 3
+    quadratic: -3.605e-5
+    linear: 0.0372
+    reference_temperature_c: 20.0
+    valid_range_c: [10.0, 38.0]
+
+# Kim et al. 2021, Table 1: mated, non-blood-fed females, 3-5 days old, recorded with an infrared
+# optical sensor at 23.0 ± 0.5 °C and 60 ± 5 % RH. n is the number of valid files; the table's
+# separate sample-size column is given in each note.
+species:
+  - id: aedes-vexans
+    scientific_name: Aedes vexans
+    gbif_taxon_key: 1652274
+    status: measured
+    measurements:
+      - &kim2021
+        sex: female
+        mean_hz: 377.62
+        sd_hz: 26.11
+        n: 714
+        n_unit: valid-files
+        modality: optical-infrared
+        temperature_c: 23.0
+        temperature_tolerance_c: 0.5
+        temperature_basis: recording
+        relative_humidity_pct: 60
+        condition: mated, non-blood-fed, 3-5 days old
+        source: kim2021
+        locator: Table 1
+        note: sample size 21
+
+  - id: aedes-japonicus
+    scientific_name: Aedes japonicus
+    gbif_taxon_key: 1652212
+    status: measured
+    measurements:
+      - <<: *kim2021
+        mean_hz: 383.00
+        sd_hz: 37.24
+        n: 690
+        note: sample size 322
+
+  - id: culex-pipiens
+    scientific_name: Culex pipiens
+    gbif_taxon_key: 1652991
+    status: measured
+    measurements:
+      - <<: *kim2021
+        mean_hz: 408.39
+        sd_hz: 41.40
+        n: 867
+        note: sample size 568
+
+  - id: aedes-albopictus
+    scientific_name: Aedes albopictus
+    gbif_taxon_key: 1651430
+    status: measured
+    measurements:
+      - <<: *kim2021
+        mean_hz: 536.16
+        sd_hz: 31.24
+        n: 840
+        note: sample size 591
+
+  - id: aedes-aegypti
+    scientific_name: Aedes aegypti
+    gbif_taxon_key: 1651891
+    status: measured
+    measurements:
+      - <<: *kim2021
+        mean_hz: 498.08
+        sd_hz: 34.19
+        n: 1161
+        note: sample size 509
+
+  - id: culex-quinquefasciatus
+    scientific_name: Culex quinquefasciatus
+    gbif_taxon_key: 1652950
+    status: measured
+    measurements:
+      - <<: *kim2021
+        mean_hz: 456.23
+        sd_hz: 30.70
+        n: 2738
+        note: sample size 798

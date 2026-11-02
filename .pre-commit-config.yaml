@@ -59,6 +59,18 @@ repos:
         pass_filenames: false
         require_serial: true
 
+  # The species reference table must match its JSON Schema (full rules run in pytest).
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.39.0
+    hooks:
+      - id: check-metaschema
+        files: ^reference/.*\.schema\.json$
+      - id: check-jsonschema
+        name: validate reference/species.yaml
+        files: ^reference/species\.(yaml|schema\.json)$
+        args: [--schemafile, reference/species.schema.json, reference/species.yaml]
+        pass_filenames: false
+
   - repo: https://github.com/shellcheck-py/shellcheck-py
     rev: v0.11.0.1
     hooks:

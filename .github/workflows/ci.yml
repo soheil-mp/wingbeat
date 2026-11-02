@@ -41,6 +41,7 @@ jobs:
               - "uv.lock"
               - ".python-version"
               - "justfile"
+              - "reference/**"
               - ".github/workflows/ci.yml"
 
   hygiene:
