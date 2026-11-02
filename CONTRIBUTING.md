@@ -25,6 +25,15 @@ and pull requests are welcome.
 6. Pull requests are merged with a **merge commit**, so every commit is kept as written. History
    on `main` is never rewritten.
 
+## Releases
+
+Releases are automated with [release-please](https://github.com/googleapis/release-please). It
+keeps a release pull request open that turns Conventional Commits into `CHANGELOG.md` entries and
+the next version in `version.txt` (semantic versioning, `0.x` until 1.0). Merging that pull
+request tags `vX.Y.Z` and creates the GitHub release. The product version lives in `version.txt`
+and the tags. Workspace packages stay at `0.0.0` because they aren't published separately, and
+bumping them would invalidate `uv.lock` on every release.
+
 ## Architecture decisions
 
 Changes to the architecture, stack, data contracts or operational guarantees need an ADR in
