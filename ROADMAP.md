@@ -8,7 +8,7 @@ from an empty repository to a 1.0 release.
 
 - **Total planned work: 1,032 hours** in 19 milestones (M0–M18), plus 226 hours of optional
   stretch work (S1–S8).
-- **Done so far: 15 hours** (planning and repository setup in M0).
+- **Done so far: 17 hours** (planning and repository setup in M0).
 - **Pace:** about 12 months at 20 h/week, or 7 months at 35 h/week.
 
 Research behind the plan: [`docs/research/`](docs/research/). Design decisions:
@@ -124,11 +124,11 @@ flowchart LR
 - [ ] **M0.12** Docs site skeleton (3 h): MkDocs Material with Mermaid, the ADR index and
   research notes, deployed to GitHub Pages from Actions.
 - [ ] **M0.13** Dev container (2 h): `devcontainer.json` with uv, just, buf and Docker-in-Docker.
-- [ ] **M0.14** Repository settings (1 h): merge commits only, delete merged branches, secret
+- [x] **M0.14** Repository settings (1 h): merge commits only, delete merged branches, secret
   scanning with push protection, a ruleset that requires CI on `main`.
 - [ ] **M0.15** Release automation (1.5 h): release-please config, `CHANGELOG.md`, first tag
   `v0.1.0`.
-- [ ] **M0.16** Planning in GitHub (1 h): labels, GitHub milestones M0–M18, and issues for the
+- [x] **M0.16** Planning in GitHub (1 h): labels, GitHub milestones M0–M18, and issues for the
   next two milestones.
 
 **Acceptance:** `just check` passes on a fresh clone; CI on a pull request finishes in under

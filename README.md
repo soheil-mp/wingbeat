@@ -116,6 +116,7 @@ What exists today:
 - Ten architecture decision records (`docs/adr/`) and the target architecture
 - Repository tooling: pre-commit with gitleaks, markdownlint and Conventional Commits, plus CI
   with a full-history secret scan
+- GitHub milestones for M0–M18, with issues open for M0 and M1
 
 What's next: the work ahead is in [`ROADMAP.md`](ROADMAP.md). It has 19 milestones and
 1,032 hours of planned work, every item estimated. Next up are the workspace and CI tooling (M0),
