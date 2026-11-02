@@ -119,8 +119,8 @@ What exists today:
 
 What's next: the work ahead is in [`ROADMAP.md`](ROADMAP.md). It has 19 milestones and
 1,032 hours of planned work, every item estimated. Next up are the workspace and CI tooling (M0),
-then the science specification (M1) and the DSP library (M2). Open issues track the current
-milestone.
+then the science specification (M1) and the DSP library (M2). Each milestone's items become
+GitHub issues when that milestone starts.
 
 ## Contributing and security
 
