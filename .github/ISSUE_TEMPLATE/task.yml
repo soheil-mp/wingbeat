@@ -1,0 +1,34 @@
+name: Roadmap task
+description: A planned piece of work from ROADMAP.md
+labels: ["type: task"]
+body:
+  - type: input
+    id: roadmap-id
+    attributes:
+      label: Roadmap ID
+      placeholder: "M2.6"
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: What will be built, and what is explicitly out of scope.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Observable checks that prove the task is done.
+      value: |
+        - [ ] Tests cover the new behaviour
+        - [ ] Docs, README and ROADMAP updated where affected
+        - [ ] ADR added if an architecture decision changed
+    validations:
+      required: true
+  - type: input
+    id: estimate
+    attributes:
+      label: Estimate (focused hours)
+      placeholder: "6"

@@ -1,0 +1,26 @@
+name: Bug report
+description: Something behaves differently from the docs or the tests
+labels: ["type: bug"]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Please use synthetic data only in reproductions. Never attach audio recordings of people,
+        credentials or `.env` contents.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: Commands, simulator seed and configuration.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit

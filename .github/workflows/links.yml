@@ -1,0 +1,27 @@
+name: links
+
+# External links rot; check them weekly instead of blocking pull requests.
+on:
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lychee:
+    name: Check Markdown links
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          # Publishers such as PMC and MDPI answer bots with 403; treat that as reachable.
+          args: >-
+            --no-progress --max-retries 3 --accept 200..=299,403,429
+            "./**/*.md"
+          fail: true
