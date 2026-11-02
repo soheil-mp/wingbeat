@@ -1,0 +1,76 @@
+# --- Secrets and local configuration ----------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.age
+secrets/
+!deploy/**/secrets/README.md
+
+# --- Python -----------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.python-version.local
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.benchmarks/
+mutants/
+dist/
+build/
+
+# --- Data (never commit downloaded or generated data) -----------------------
+# Small, hand-written, synthetic fixtures live in tests/fixtures/ and are allowed.
+data/
+!data/README.md
+*.wav
+*.flac
+*.parquet
+*.duckdb
+*.duckdb.wal
+*.ducklake
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+!tests/fixtures/**
+
+# --- Orchestration / transformation artefacts -------------------------------
+.dagster/
+dagster_home/
+tmp*/
+transform/target/
+transform/dbt_packages/
+transform/logs/
+
+# --- Node / web UI ----------------------------------------------------------
+node_modules/
+.vite/
+web/dist/
+
+# --- Infrastructure ---------------------------------------------------------
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+kubeconfig*
+charts/**/charts/*.tgz
+
+# --- Docs build -------------------------------------------------------------
+site/
+
+# --- Editors and OS ---------------------------------------------------------
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+.DS_Store
+Thumbs.db

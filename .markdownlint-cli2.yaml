@@ -1,0 +1,14 @@
+config:
+  default: true
+  MD013: false # line length: prose is wrapped by editors, tables cannot be
+  MD024:
+    siblings_only: true # repeated sub-headings (e.g. "Acceptance") under different parents
+  MD033:
+    allowed_elements: [details, summary, br, sup, sub, kbd, img, picture, source]
+  MD041: false # files may start with front matter or a badge row
+  MD060: false # table column alignment is cosmetic
+
+ignores:
+  - "**/node_modules/**"
+  - "**/.venv/**"
+  - "**/CHANGELOG.md"

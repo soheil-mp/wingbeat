@@ -1,0 +1,48 @@
+# Run `pre-commit install --hook-type pre-commit --hook-type commit-msg` once after cloning.
+# Hooks for Python, SQL, protobuf, Dockerfiles and Helm are added in roadmap milestone M0
+# as soon as the first file of each kind exists.
+default_install_hook_types: [pre-commit, commit-msg]
+minimum_pre_commit_version: "4.0.0"
+
+repos:
+  # Secrets must never reach the repository or its history.
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.1
+    hooks:
+      - id: gitleaks
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-added-large-files
+        args: [--maxkb=500]
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: check-yaml
+        args: [--allow-multiple-documents]
+      - id: check-toml
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: trailing-whitespace
+      - id: no-commit-to-branch
+        args: [--branch, main, --pattern, "release/.*"]
+        stages: [manual]
+
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.24.0
+    hooks:
+      - id: markdownlint-cli2
+
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.7.12
+    hooks:
+      - id: actionlint
+
+  # Conventional Commits for every commit message (drives release-please later).
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v4.19.3
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]

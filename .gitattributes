@@ -1,0 +1,16 @@
+# Normalise line endings in the repository; check out with LF everywhere.
+* text=auto eol=lf
+
+# Binary assets
+*.png  binary
+*.jpg  binary
+*.webp binary
+*.wav  binary
+*.flac binary
+*.parquet binary
+
+# Generated code is collapsed in diffs and excluded from language statistics
+**/gen/**            linguist-generated=true
+*_pb2.py             linguist-generated=true
+*_pb2.pyi            linguist-generated=true
+uv.lock              linguist-generated=true
