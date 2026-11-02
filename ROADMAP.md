@@ -8,7 +8,7 @@ from an empty repository to a 1.0 release.
 
 - **Total planned work: 1,032 hours** in 19 milestones (M0–M18), plus 226 hours of optional
   stretch work (S1–S8).
-- **Done so far: 20 hours** (see the ticked items below).
+- **Done so far: 22 hours** (see the ticked items below).
 - **Pace:** about 12 months at 20 h/week, or 7 months at 35 h/week.
 
 Research behind the plan: [`docs/research/`](docs/research/). Design decisions:
@@ -111,7 +111,7 @@ flowchart LR
   secret scan on every push, and Dependabot for GitHub Actions.
 - [x] **M0.6** uv workspace skeleton (3 h): root `pyproject.toml`, the `packages/` and
   `services/` layout with empty typed packages (`py.typed`), Python 3.13 pin, `uv.lock`.
-- [ ] **M0.7** Shared quality config (2 h): Ruff rules, `mypy --strict`, pytest with coverage
+- [x] **M0.7** Shared quality config (2 h): Ruff rules, `mypy --strict`, pytest with coverage
   thresholds, and the matching pre-commit hooks.
 - [ ] **M0.8** Task runner (2 h): `justfile` with `setup`, `fmt`, `lint`, `test`, `check`,
   `docs`, `up`, `down` and `demo`, matching CI one to one.

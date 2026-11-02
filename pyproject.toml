@@ -17,7 +17,7 @@ dependencies = [
 
 [tool.uv]
 package = false
-required-version = ">=0.11"
+required-version = ">=0.13.6"
 
 [tool.uv.workspace]
 members = ["packages/*", "services/*"]
@@ -29,3 +29,91 @@ wingbeat-edge-agent = { workspace = true }
 wingbeat-simulator = { workspace = true }
 wingbeat-stream-processor = { workspace = true }
 wingbeat-api = { workspace = true }
+
+[dependency-groups]
+dev = [
+    "hypothesis==6.170.14",
+    "mypy==2.4.1",
+    "pytest==9.2.0",
+    "pytest-cov==7.1.0",
+    "ruff==0.17.3",
+]
+
+# --- Ruff ----------------------------------------------------------------------
+[tool.ruff]
+target-version = "py313"
+line-length = 100
+src = ["packages/*/src", "services/*/src", "tools"]
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff.lint]
+select = [
+    "E", "W", "F",   # pycodestyle, pyflakes
+    "I",             # import order
+    "N",             # naming
+    "D",             # docstrings (Google style)
+    "UP",            # modern syntax for the target version
+    "B",             # likely bugs
+    "S",             # bandit checks
+    "C4", "SIM", "RET", "PIE", "PERF",
+    "PT",            # pytest style
+    "PTH",           # pathlib over os.path
+    "DTZ",           # timezone-aware datetimes only
+    "T20",           # no print() in library code
+    "ERA",           # no commented-out code
+    "PL",            # pylint subset
+    "TRY",           # exception hygiene
+    "RUF",
+]
+ignore = [
+    "D105", # magic methods document themselves
+    "D107", # __init__ is documented on the class
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"**/tests/**" = ["D", "S101", "PLR2004"]
+"tools/**" = ["T20"]
+
+# --- mypy ----------------------------------------------------------------------
+[tool.mypy]
+python_version = "3.13"
+strict = true
+warn_unreachable = true
+enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
+files = ["packages", "services"]
+
+# --- pytest and coverage -------------------------------------------------------
+[tool.pytest.ini_options]
+minversion = "9.0"
+testpaths = ["packages", "services"]
+addopts = [
+    "-ra",
+    "--strict-markers",
+    "--strict-config",
+    "--import-mode=importlib",
+    "--cov",
+    "--cov-report=term-missing:skip-covered",
+]
+xfail_strict = true
+filterwarnings = ["error"]
+
+[tool.coverage.run]
+branch = true
+source_pkgs = [
+    "wingbeat_dsp",
+    "wingbeat_common",
+    "wingbeat_edge",
+    "wingbeat_simulator",
+    "wingbeat_stream",
+    "wingbeat_api",
+]
+
+[tool.coverage.report]
+fail_under = 90
+show_missing = true
+exclude_also = ["if TYPE_CHECKING:", "raise NotImplementedError", "@overload"]

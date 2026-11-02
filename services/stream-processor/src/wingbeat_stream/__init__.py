@@ -1,4 +1,4 @@
-"""Stateful stream processing for Wingbeat: validation, enrichment, attribution, windows and alerts."""
+"""Stateful stream processing for Wingbeat: validation, enrichment, attribution, alerts."""
 
 from importlib.metadata import version
 
