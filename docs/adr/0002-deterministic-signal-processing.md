@@ -42,5 +42,5 @@ All parameters live in a versioned reference table with a citation for every val
 
 ### Confirmation
 
-A dependency allow-list check in CI rejects ML libraries. The verification report (M16) gives
+A dependency allow-list check in CI rejects ML libraries. The verification report (M17) gives
 detection characteristics against SNR for planted synthetic events.

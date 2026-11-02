@@ -1,6 +1,6 @@
 # Data sources, licences and storage budget
 
-> Status: research note for roadmap milestones M3 and M8. Checked on 2 November 2026; every
+> Status: research note for roadmap milestones M3 and M9. Checked on 2 November 2026; every
 > number in this file was read from the source on that day.
 
 Wingbeat is built to run on a laptop with little free disk space. Each source has a hard size cap
@@ -97,7 +97,7 @@ are written to a separate manifest so end-to-end tests can check that the platfo
 
 - Used once per sensor site to find its NUTS3 code (point-in-polygon in DuckDB spatial).
 - The geometries are copyrighted (EuroGeographics) and come with usage provisions. They are
-  **downloaded at runtime and never committed**. Milestone M8 confirms the exact NUTS 2024
+  **downloaded at runtime and never committed**. Milestone M9 confirms the exact NUTS 2024
   acknowledgement text from the GISCO metadata before release.
 
 ## 7. Own recordings

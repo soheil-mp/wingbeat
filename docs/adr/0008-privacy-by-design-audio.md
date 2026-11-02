@@ -35,5 +35,5 @@ voices are personal data. Wingbeat must not collect personal data.
 
 A unit test plays synthetic speech-like signals (voiced harmonic stacks with syllabic AM) through
 the guard and expects zero uplinked frames. An integration test checks that no topic schema has a
-raw-sample field. The M16 verification report includes guard false-positive and false-negative
+raw-sample field. The M17 verification report includes guard false-positive and false-negative
 rates on synthetic signals.

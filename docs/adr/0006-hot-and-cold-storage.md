@@ -1,6 +1,6 @@
 # 0006. ClickHouse for hot serving, DuckLake on S3 for the lakehouse
 
-- Status: Accepted (validate in M4/M7)
+- Status: Accepted (validate in M4/M8)
 - Date: 2026-11-02
 
 ## Context and problem statement
@@ -38,5 +38,5 @@ Chosen option 2.
 
 ### Confirmation
 
-M7 benchmarks: p95 under 200 ms for a 24 h activity query in ClickHouse. A full gold rebuild from
+M8 benchmarks: p95 under 200 ms for a 24 h activity query in ClickHouse. A full gold rebuild from
 the lake in under 5 minutes on a laptop.

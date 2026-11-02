@@ -1,6 +1,6 @@
 # 0005. Dagster for batch orchestration
 
-- Status: Accepted (validate in M8)
+- Status: Accepted (validate in M9)
 - Date: 2026-11-02
 
 ## Context and problem statement
@@ -31,5 +31,5 @@ concurrency pools for rate-limited APIs, and first-class dbt integration. It run
 
 ### Confirmation
 
-M8: every external source is an asset with at least one blocking asset check and a freshness
+M9: every external source is an asset with at least one blocking asset check and a freshness
 policy.
