@@ -8,7 +8,7 @@ from an empty repository to a 1.0 release.
 
 - **Total planned work: 1,032 hours** in 19 milestones (M0–M18), plus 226 hours of optional
   stretch work (S1–S8).
-- **Done so far: 43 hours** (see the ticked items below).
+- **Done so far: 47 hours** (see the ticked items below).
 - **Pace:** about 12 months at 20 h/week, or 7 months at 35 h/week.
 
 Research behind the plan: [`docs/research/`](docs/research/). Design decisions:
@@ -174,7 +174,7 @@ stateful streaming API.
 
 - [ ] **M2.1** Package and public API (3 h): frame, event and trace dataclasses; a stateful
   streaming `Processor` plus pure batch functions.
-- [ ] **M2.2** Framing and conditioning (4 h): windowing and overlap, polyphase resampling to
+- [x] **M2.2** Framing and conditioning (4 h): windowing and overlap, polyphase resampling to
   8 kHz, DC removal.
 - [ ] **M2.3** Filters (4 h): SOS Butterworth band-pass (250–2,500 Hz) and a mains-hum comb notch
   (50/60 Hz and harmonics).
