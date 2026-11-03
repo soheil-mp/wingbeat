@@ -8,7 +8,7 @@ from an empty repository to a 1.0 release.
 
 - **Total planned work: 1,032 hours** in 19 milestones (M0–M18), plus 226 hours of optional
   stretch work (S1–S8).
-- **Done so far: 55 hours** (see the ticked items below).
+- **Done so far: 61 hours** (see the ticked items below).
 - **Pace:** about 12 months at 20 h/week, or 7 months at 35 h/week.
 
 Research behind the plan: [`docs/research/`](docs/research/). Design decisions:
@@ -182,7 +182,7 @@ stateful streaming API.
   running percentile) and SNR per frame.
 - [x] **M2.5** Spectral estimation (4 h): Welch PSD, parabolic peak interpolation, spectral
   flatness.
-- [ ] **M2.6** Harmonic estimators (6 h): harmonic-sum and harmonic-product spectra with an
+- [x] **M2.6** Harmonic estimators (6 h): harmonic-sum and harmonic-product spectra with an
   octave-error guard.
 - [ ] **M2.7** YIN cross-check (5 h): time-domain *f0* and an agreement score between estimators.
 - [ ] **M2.8** Event segmentation (5 h): hysteresis thresholds, minimum duration, gap merging,
