@@ -123,10 +123,16 @@ What exists today:
 - Repository tooling: pre-commit with gitleaks, markdownlint and Conventional Commits, plus CI
   with a full-history secret scan
 - GitHub milestones for M0–M18, with issues open for M0 and M1
+- The species reference table with its JSON Schema (`reference/species.yaml`)
+- The first `wingbeat-dsp` estimators: resampling to 8 kHz, DC removal and framing, the
+  250–2,500 Hz band-pass and mains-hum notches, Welch PSD with interpolated peaks and spectral
+  flatness, harmonic-sum and harmonic-product *f0* with an octave guard, and YIN as a
+  cross-check; each with a streaming form where the pipeline needs one, and property tests
 
 What's next: the work ahead is in [`ROADMAP.md`](ROADMAP.md). It has 19 milestones and
-1,032 hours of planned work, every item estimated. Next up are the workspace and CI tooling (M0),
-then the science specification (M1) and the DSP library (M2). Each milestone's items become
+1,032 hours of planned work, every item estimated. Next up are the rest of the science
+specification (M1) and of the DSP library (M2): noise floor and SNR, event segmentation,
+concurrent sources, temperature normalisation and the attribution rule engine. Each milestone's items become
 GitHub issues when that milestone starts.
 
 ## Documentation
